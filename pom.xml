@@ -8,22 +8,33 @@
     <artifactId>flink_demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>oss</id>-->
+<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>oss</id>-->
+<!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
+
 
     <!-- 指定仓库位置，依次为aliyun、apache和cloudera仓库 -->
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>apache</id>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>cloudera</id>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>aliyun</id>-->
+<!--            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>apache</id>-->
+<!--            <url>https://repository.apache.org/content/repositories/snapshots/</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>cloudera</id>-->
+<!--            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -32,9 +43,24 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
         <scala.version>2.12</scala.version>
-        <flink.version>1.12.0</flink.version>
+<!--        <flink.version>1.12.0</flink.version>-->
+        <flink.version>1.13.5</flink.version>
+        <flink.cdc.version>2.2-SNAPSHOT</flink.cdc.version>
     </properties>
+
     <dependencies>
+
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-mysql-cdc</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-cdc-base</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+
         <!--依赖Scala语言-->
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -200,8 +226,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
-            <!--<version>8.0.20</version>-->
+<!--            <version>5.1.38</version>-->
+            <version>8.0.20</version>
         </dependency>
 
         <!-- 高性能异步组件：Vertx-->
