@@ -80,7 +80,7 @@ public class CdcMysqlDemo {
                        * 默认 {@link MySqlSourceOptions.SCAN_NEWLY_ADDED_TABLE_ENABLED}
                        */
                       .scanNewlyAddedTableEnabled(false)
-                      .serverId("223344")
+//                      .serverId("223344")
                       /**
                        * 默认 {@link MySqlSourceOptions.SERVER_TIME_ZONE}
                        */
@@ -103,7 +103,8 @@ public class CdcMysqlDemo {
                       /**
                        * 多个个表结构必须一致
                        */
-                      .tableList("flink_cdc_db.customers_1", "flink_cdc_db.customers_2")
+//                      .tableList("flink_cdc_db.customers_1", "flink_cdc_db.customers_2")
+                      .tableList("flink_cdc_db.customers_1")
                       .username("root")
                       .build();
 
@@ -138,13 +139,13 @@ public class CdcMysqlDemo {
        * 一旦重新连接，不会读快照，只读 连接后的 binlog
        * {@link com.ververica.cdc.connectors.mysql.table.StartupMode.LATEST_OFFSET}
        */
-      properties.put("snapshot.mode", "schema_only");
+//      properties.put("snapshot.mode", "schema_only");
 
       /**
        *  一旦重新连接，不会读快照，只读指定位移的binlog
        * {@link com.ververica.cdc.connectors.mysql.table.StartupMode.SPECIFIC_OFFSETS}
        */
-      properties.put("snapshot.mode", "schema_only_recovery");
+//      properties.put("snapshot.mode", "schema_only_recovery");
       return properties;
   }
 }

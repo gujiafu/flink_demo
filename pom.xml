@@ -57,8 +57,33 @@
         </dependency>
         <dependency>
             <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-sqlserver-cdc</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-oracle-cdc</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-postgres-cdc</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ververica</groupId>
+            <artifactId>flink-connector-mongodb-cdc</artifactId>
+            <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ververica</groupId>
             <artifactId>flink-cdc-base</artifactId>
             <version>${flink.cdc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.7.0</version>
         </dependency>
 
         <!--依赖Scala语言-->
