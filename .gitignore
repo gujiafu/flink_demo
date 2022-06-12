@@ -1,3 +1,4 @@
 /target/
 /.idea/
 /flink_demo.iml
+/log/test.log
