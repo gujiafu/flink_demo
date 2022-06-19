@@ -1,3 +1,5 @@
+package cep;
+
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.cep.CEP;
 import org.apache.flink.cep.PatternSelectFunction;
@@ -13,7 +15,7 @@ import java.util.Map;
 /**
  * 需求：从数据源中依次提取"c","a","b"元素
  */
-public class ConsecutiveDemo {
+public class ConsecutiveTest {
 
     public static void main(String[] args) throws Exception {
 
@@ -56,7 +58,7 @@ public class ConsecutiveDemo {
                     }
                 });
         //5.匹配数据提取Tuple3
-        PatternStream<String> cep = CEP.pattern(source, pattern);
+        PatternStream<String> cep = CEP.pattern(source, pattern).inProcessingTime();
         cep.select(new PatternSelectFunction<String, Object>() {
             @Override
             public Object select(Map<String, List<String>> pattern) throws Exception {

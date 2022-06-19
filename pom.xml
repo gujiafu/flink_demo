@@ -8,33 +8,6 @@
     <artifactId>flink_demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--    <distributionManagement>-->
-<!--        <snapshotRepository>-->
-<!--            <id>oss</id>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--        </snapshotRepository>-->
-<!--        <repository>-->
-<!--            <id>oss</id>-->
-<!--            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
-
-
-    <!-- 指定仓库位置，依次为aliyun、apache和cloudera仓库 -->
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>aliyun</id>-->
-<!--            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>apache</id>-->
-<!--            <url>https://repository.apache.org/content/repositories/snapshots/</url>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>cloudera</id>-->
-<!--            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -143,7 +116,7 @@
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-cep_2.12</artifactId>
+            <artifactId>flink-cep-scala_${scala.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
 

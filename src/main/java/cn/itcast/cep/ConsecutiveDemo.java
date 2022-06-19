@@ -33,32 +33,36 @@ public class ConsecutiveDemo {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         //3.加载数据源
-        DataStreamSource<String> source = env.fromElements("c", "d", "a", "a", "a", "d", "a", "b");
+        DataStreamSource<String> source = env.fromElements("c1", "d2", "a3", "a4", "a5", "d6", "a7", "b8");
         //4.设置匹配模式，匹配"c","a","b"
         //  多次匹配"a"：组合模式
         Pattern<String, String> pattern = Pattern.<String>begin("begin").where(new SimpleCondition<String>() {
             @Override
             public boolean filter(String value) throws Exception {
-                return value.equals("c");
+                return value.substring(0,1).equals("c");
             }
         }).followedBy("middle")
                 .where(new SimpleCondition<String>() {
                     @Override
                     public boolean filter(String value) throws Exception {
-                        return value.equals("a");
+                        return value.substring(0,1).equals("a");
                     }
                 })
                 .oneOrMore()
+//                .times(2)
                 .consecutive() //连续匹配,需要配合量词使用
 //                .allowCombinations() //允许匹配到的数据是不连续的
                 .followedBy("end").where(new SimpleCondition<String>() {
                     @Override
                     public boolean filter(String value) throws Exception {
-                        return value.equals("b");
+                        return value.substring(0,1).equals("b");
                     }
                 });
         //5.匹配数据提取Tuple3
-        PatternStream<String> cep = CEP.pattern(source, pattern);
+        /**
+         * flink-cep 1.10.0版本以上，如果不是evenTime，必须后续必须新增.inProcessingTime()，否则不生效
+         */
+        PatternStream<String> cep = CEP.pattern(source, pattern).inProcessingTime();
         cep.select(new PatternSelectFunction<String, Object>() {
             @Override
             public Object select(Map<String, List<String>> pattern) throws Exception {

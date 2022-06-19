@@ -63,11 +63,10 @@ public class ConditionDemo {
                         return value.getStatus().equals("fail");
                     }
                 })
-                .where
-//                  .or
-//                .oneOrMore()
-//                .until //表示会跳过满足条件的数据
-
+//                .where
+//                 .or
+                .oneOrMore()
+                .until//表示会跳过满足条件的数据
                         (new SimpleCondition<LoginEvent>() {
                             @Override
                             public boolean filter(LoginEvent value) throws Exception {
@@ -77,7 +76,10 @@ public class ConditionDemo {
 
         //5.匹配数据提取，返回集合
         //把模式作用在数据流上
-        PatternStream<LoginEvent> cep = CEP.pattern(source.keyBy(LoginEvent::getId), pattern);
+        /**
+         * flink-cep 1.10.0版本以上，如果不是evenTime，必须后续必须新增.inProcessingTime()，否则不生效
+         */
+        PatternStream<LoginEvent> cep = CEP.pattern(source.keyBy(LoginEvent::getId), pattern).inProcessingTime();
 
         // 6.数据打印
         cep.select(new PatternSelectFunction<LoginEvent, Object>() {
