@@ -33,9 +33,11 @@ public class AviatorCondition extends SimpleCondition<MetricEvent> implements Se
         env.put("tags", event.getTags());
         Boolean result = false;
         try {
+            logger.error("AviatorCondition.filter过滤 时间-------------》");
             result = (Boolean) AviatorEvaluator.execute(script, env);
         } catch (Exception e) {
             logger.error("execute script with event error,script:{},event:{},error;{}", script, event, e);
+            throw e;
         }
         return result;
     }
